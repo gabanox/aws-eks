@@ -9,7 +9,7 @@ Resources:
     Properties:
       AutomaticStopTimeMinutes: 180
       Description: Cloud9 environment for EKS cluster management
-      InstanceType: t2.micro
+      InstanceType: t3.small
       Name: 
         Ref: cloud9EnvName
   Cloud9InstanceRole:
@@ -24,10 +24,9 @@ Resources:
               Service: ec2.amazonaws.com
       Path: /
       Policies:
-        - PolicyName: 
-            !Sub 
-              - 'Cloud9InstancePolicy-${c9Env}'
-              - { c9Env: Ref cloud9EnvName }
+        - PolicyName: !Sub 
+            - 'Cloud9InstancePolicy-${c9Env}'
+            - { c9Env: !Ref cloud9EnvName }
           PolicyDocument:
             Version: '2012-10-17'
             Statement:
@@ -140,9 +139,8 @@ Resources:
   Ec2InstProfile:
     Type: 'AWS::IAM::InstanceProfile'
     Properties:
-      InstanceProfileName: Cloud9InstanceProfile
-        !Sub 
-          - 'Cloud9InstanceProfile-${c9Env}'
-          - { c9Env: Ref cloud9EnvName }
+      InstanceProfileName: !Sub 
+        - Cloud9InstanceProfile-${c9Env}
+        - { c9Env: !Ref cloud9EnvName }
       Roles:
         - !Ref Cloud9InstanceRole
