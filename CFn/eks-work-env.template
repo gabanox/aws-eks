@@ -1,0 +1,148 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: This template creates a Cloud9 lab environment for managing a EKS Cluster
+Parameters:
+  cloud9EnvName:
+    Type: String
+Resources:
+  Cloud9Env:
+    Type: 'AWS::Cloud9::EnvironmentEC2'
+    Properties:
+      AutomaticStopTimeMinutes: 180
+      Description: Cloud9 environment for EKS cluster management
+      InstanceType: t2.micro
+      Name: 
+        Ref: cloud9EnvName
+  Cloud9InstanceRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Action: 'sts:AssumeRole'
+            Effect: Allow
+            Principal:
+              Service: ec2.amazonaws.com
+      Path: /
+      Policies:
+        - PolicyName: 
+            !Sub 
+              - 'Cloud9InstancePolicy-${c9Env}'
+              - { c9Env: Ref cloud9EnvName }
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Sid: VisualEditor0
+                Effect: Allow
+                Action:
+                  - iam:CreateInstanceProfile
+                  - iam:TagRole
+                  - iam:RemoveRoleFromInstanceProfile
+                  - iam:DeletePolicy
+                  - iam:CreateRole
+                  - iam:AttachRolePolicy
+                  - ecr:UploadLayerPart
+                  - iam:PutRolePolicy
+                  - ssm:GetParameter
+                  - iam:AddRoleToInstanceProfile
+                  - iam:ListInstanceProfilesForRole
+                  - iam:PassRole
+                  - iam:DetachRolePolicy
+                  - iam:DeleteRolePolicy
+                  - iam:ListAttachedRolePolicies
+                  - ecr:CompleteLayerUpload
+                  - iam:DeleteOpenIDConnectProvider
+                  - ecr:BatchCheckLayerAvailability
+                  - iam:DeleteInstanceProfile
+                  - iam:GetRole
+                  - iam:GetInstanceProfile
+                  - iam:GetPolicy
+                  - iam:DeleteRole
+                  - ssm:GetParameters
+                  - iam:ListInstanceProfiles
+                  - ecr:PutImage
+                  - iam:CreateOpenIDConnectProvider
+                  - iam:CreatePolicy
+                  - iam:ListPolicyVersions
+                  - iam:GetOpenIDConnectProvider
+                  - ecr:InitiateLayerUpload
+                  - iam:TagOpenIDConnectProvider
+                  - iam:GetRolePolicy
+                  - iam:AttachRolePolicy
+                Resource:
+                  - arn:aws:ssm:*:*:parameter/aws/*
+                  - arn:aws:ssm:*::parameter/aws/*
+                  - arn:aws:ecr:*:*:repository/*
+                  - arn:aws:iam::*:instance-profile/eksctl-*
+                  - arn:aws:iam::*:oidc-provider/*
+                  - arn:aws:iam::*:role/eksctl-*
+                  - arn:aws:iam::*:role/aws-service-role/eks-nodegroup.amazonaws.com/AWSServiceRoleForAmazonEKSNodegroup
+                  - arn:aws:iam::*:role/eksctl-managed-*
+                  - arn:aws:iam::*:policy/eksctl-*
+                  - arn:aws:iam::*:role/AmazonEKSLoadBalancerControllerRole
+                  - arn:aws:iam::*:role/eksRole4serviceaccount
+                  - arn:aws:iam::*:instance-profile/eks-*
+              - Sid: VisualEditor1
+                Effect: Allow
+                Action: iam:CreateServiceLinkedRole
+                Resource: '*'
+                Condition:
+                  StringEquals:
+                    iam:AWSServiceName:
+                      - autoscaling.amazonaws.com
+                      - ec2scheduled.amazonaws.com
+                      - elasticloadbalancing.amazonaws.com
+                      - spot.amazonaws.com
+                      - spotfleet.amazonaws.com
+                      - transitgateway.amazonaws.com
+              - Sid: VisualEditor2
+                Effect: Allow
+                Action: iam:CreateServiceLinkedRole
+                Resource: '*'
+                Condition:
+                  StringEquals:
+                    iam:AWSServiceName:
+                      - eks.amazonaws.com
+                      - eks-nodegroup.amazonaws.com
+                      - eks-fargate.amazonaws.com
+              - Sid: VisualEditor3
+                Effect: Allow
+                Action: iam:GetRole
+                Resource: arn:aws:iam::*:role/*
+              - Sid: VisualEditor4
+                Effect: Allow
+                Action: iam:CreatePolicy
+                Resource: arn:aws:iam::*:policy/AWSLoadBalancerControllerIAMPolicy
+              - Sid: VisualEditor5
+                Effect: Allow
+                Action:
+                  - ecr:CreateRepository
+                  - ecr:GetAuthorizationToken
+                  - cloudformation:*
+                  - elasticloadbalancing:*
+                  - autoscaling:*
+                  - cloudwatch:*
+                  - kms:DescribeKey
+                  - ec2:*
+                  - ecr:DescribeRepositories
+                  - sts:GetCallerIdentity
+                  - eks:*
+                  - logs:PutRetentionPolicy
+                  - kms:CreateGrant
+                Resource: '*'
+              - Sid: limitedSize
+                Effect: Deny
+                Action: ec2:RunInstances
+                Resource: arn:aws:ec2:*:*:instance/*
+                Condition:
+                  ForAnyValue:StringNotLike:
+                    ec2:InstanceType:
+                      - 't3.medium'
+  Ec2InstProfile:
+    Type: 'AWS::IAM::InstanceProfile'
+    Properties:
+      InstanceProfileName: Cloud9InstanceProfile
+        !Sub 
+          - 'Cloud9InstanceProfile-${c9Env}'
+          - { c9Env: Ref cloud9EnvName }
+      Roles:
+        - !Ref Cloud9InstanceRole
