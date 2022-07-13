@@ -9,4 +9,4 @@ for envId in $envIds; do
     fi
 done
 export cloud9InstanceId=`aws ec2 describe-instances --output text --filters Name=tag:aws:cloud9:environment,Values=$envId --query 'Reservations[*].Instances[*].InstanceId'`
-aws ec2 associate-iam-instance-profile --instance-id $cloud9InstanceId --iam-instance-profile Name=Cloud9InstanceProfile
+aws ec2 associate-iam-instance-profile --instance-id $cloud9InstanceId --iam-instance-profile Name=Cloud9InstanceProfile-$1

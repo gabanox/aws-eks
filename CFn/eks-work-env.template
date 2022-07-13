@@ -1,8 +1,5 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: This template creates a Cloud9 lab environment for managing a EKS Cluster
-Parameters:
-  cloud9EnvName:
-    Type: String
 Resources:
   Cloud9Env:
     Type: 'AWS::Cloud9::EnvironmentEC2'
@@ -11,7 +8,7 @@ Resources:
       Description: Cloud9 environment for EKS cluster management
       InstanceType: t3.small
       Name: 
-        Ref: cloud9EnvName
+        Ref: AWS::StackName
   Cloud9InstanceRole:
     Type: 'AWS::IAM::Role'
     Properties:
@@ -26,7 +23,7 @@ Resources:
       Policies:
         - PolicyName: !Sub 
             - 'Cloud9InstancePolicy-${c9Env}'
-            - { c9Env: !Ref cloud9EnvName }
+            - { c9Env: !Ref AWS::StackName }
           PolicyDocument:
             Version: '2012-10-17'
             Statement:
@@ -141,6 +138,6 @@ Resources:
     Properties:
       InstanceProfileName: !Sub 
         - Cloud9InstanceProfile-${c9Env}
-        - { c9Env: !Ref cloud9EnvName }
+        - { c9Env: !Ref AWS::StackName }
       Roles:
         - !Ref Cloud9InstanceRole
