@@ -3,3 +3,4 @@ notes
 optional-LB-controller.md
 setIamPermissions-copy.sh
 alb-ingress-controller.yaml
+containerInsights.sh
