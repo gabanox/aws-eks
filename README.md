@@ -106,12 +106,24 @@ This repository contains the instructions to deploy a simple Kubernetes environm
     NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
     kubernetes   ClusterIP   10.100.0.1   <none>        443/TCP   16m
     ```
-    
+
 1. (Optiona) If you would like to install the AWS Load Balancer controller, run the below command
 
     ```sh
     chmod +x AWSLoadBalancerController.sh
     ./AWSLoadBalancerController.sh $clusterName $AWS_REGION
+    ```
+
+    The script might take a few minutes to complete.
+
+    The command output should show **AWS Load Balancer controller installed!**
+
+1. To confirm that the AWS Load Balancer Controller pods are in a **Running** state, run the following command:
+
+    ```sh
+    kubectl get pods \
+    -n kube-system \
+    --selector=app.kubernetes.io/name=aws-load-balancer-controller
     ```
 
 For more info go to:
