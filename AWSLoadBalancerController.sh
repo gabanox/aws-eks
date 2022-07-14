@@ -2,7 +2,7 @@
 # Add AWS account number as envvar
 export ACCOUNT_NUMBER=$(aws sts get-caller-identity --query 'Account' --output text)
 # Create an IAM OIDC (Open ID Connect) provider
-eksctl utils associate-iam-oidc-provider --region us-east-2 --cluster $1 --approve
+eksctl utils associate-iam-oidc-provider --region $2 --cluster $1 --approve
 # Download the IAM policy for the ALB Ingress Controller pod
 curl -o iam_policy.json https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.4.2/docs/install/iam_policy.json
 # Create an IAM policy called ALBIngressControllerIAMPolicy

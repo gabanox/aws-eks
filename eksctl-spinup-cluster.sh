@@ -1,7 +1,7 @@
 #!/bin/bash
 eksctl create cluster \
 --name $1 \
---region us-west-2 \
+--region $2 \
 --nodegroup-name worknodes-1 \
 --node-type t3.medium \
 --nodes 2 \

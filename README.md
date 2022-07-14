@@ -42,7 +42,7 @@ This repository contains the instructions to deploy a simple Kubernetes environm
     git clone https://github.com/gcanales75/eks-work-env.git
     ```
 
-1. Runnin the below command will run a script that will install the following software and libraries:
+1. Running the below command will run a script that will install the following software and libraries:
 
     - python 3.8
     - pip
@@ -62,16 +62,17 @@ This repository contains the instructions to deploy a simple Kubernetes environm
 
     ```sh
     export clusterName=<cluster-name>
+    export AWS_REGION=<my-aws-region>
     ```
 
 1. Run this command to create a 2 nodes EKS cluster, using `t3.medium` instance type. If you would like to change the cluster configuration you can update `eksctl-spinup-cluster.sh` file.
 
     ```sh
     chmod +x eksctl-spinup-cluster.sh
-    ./eksctl-spinup-cluster.sh $clusterName
+    ./eksctl-spinup-cluster.sh $clusterName $AWS_REGION
     ```
 
-    Cluster will take 15-20 minutes to fully deploy. If you see an error message take a look at the CloudFormation template error messages, you may have reached a VPC limit in your region. 
+    Cluster will take 15-20 minutes to fully deploy, do not interrupt the script execution. If you see an error message take a look at the CloudFormation template error messages, you may have reached a VPC limit in your region.
 
 1. Run this command to monitor cluster creation status
 
@@ -84,7 +85,7 @@ This repository contains the instructions to deploy a simple Kubernetes environm
 1. Now you can authenticate
 
     ```sh
-    aws eks update-kubeconfig --region us-west-2 --name $clusterName
+    aws eks update-kubeconfig --region $AWS_REGION --name $clusterName
     ````
 
 1. If you see this error message during your building activities, just re-run the previous command
@@ -103,7 +104,7 @@ This repository contains the instructions to deploy a simple Kubernetes environm
 
     ```sh
     chmod +x AWSLoadBalancerController.sh
-    ./AWSLoadBalancerController.sh $clusterName
+    ./AWSLoadBalancerController.sh $clusterName $AWS_REGION
     ```
 
 For more info go to:
