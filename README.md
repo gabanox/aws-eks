@@ -98,7 +98,7 @@ Create an EKS environmet for testing and development
     ```
 
     For more info go to: 
-    https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.4/
-    https://docs.aws.amazon.com/eks/latest/userguide/aws-load-balancer-controller.html
+    - https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.4/
+    - https://docs.aws.amazon.com/eks/latest/userguide/aws-load-balancer-controller.html
 
 Happy building!
