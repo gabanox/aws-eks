@@ -34,6 +34,8 @@ This repository contains the instructions to deploy a simple Kubernetes environm
     ./setIamPermissions.sh $envName
     ```
 
+1. You must see this string in the stdout: `"State": "associating"`.
+
 1. Go to Cloud9 console and select **Open IDE** on your environment. Once logged in into the console clone the repo with the setup scripts
 
     ```sh
