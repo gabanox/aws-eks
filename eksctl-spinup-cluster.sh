@@ -1,6 +1,6 @@
 #!/bin/bash
 eksctl create cluster \
---name eks-lab-cluster \
+--name $1 \
 --region us-west-2 \
 --nodegroup-name worknodes-1 \
 --node-type t3.medium \
