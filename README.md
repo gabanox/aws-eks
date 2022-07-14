@@ -4,9 +4,9 @@ Create an EKS environmet for testing and development
 
 1. First add as an environment variable the EKS environment name you would like to use (e.g. env1). Replace with your desired EKS environment name.
 
-```sh
-export envName=<my-env-name>
-```
+    ```sh
+    export envName=<my-env-name>
+    ```
 
 1. Run this command from a CLI console (e.g. CloudShell).
 
