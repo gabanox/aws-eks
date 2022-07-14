@@ -77,7 +77,7 @@ This repository contains the instructions to deploy a simple Kubernetes environm
 1. Run this command to monitor cluster creation status
 
     ```sh
-    aws eks describe-cluster --name $clusterName --query 'cluster.status' --output text
+    aws eks describe-cluster --name $clusterName --region $AWS_REGION --query 'cluster.status' --output text 
     ```
 
     Wait until the cluster status is `ACTIVE` state to proceed with the following step
