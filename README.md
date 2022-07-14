@@ -2,7 +2,7 @@
 
 Create an EKS environmet for testing and development
 
-This repository contains the instructions to deploy a simple Kubernetes environment on EKS. The resources that will created are:
+This repository contains the instructions to deploy a simple *Kubernetes* environment on **EKS** and manage it with **Cloud9**. The resources that will created are:
 
 - Cloud9 IDE
 - IAM instance profile, IAM role and an IAM policy
