@@ -71,7 +71,7 @@ This repository contains the instructions to deploy a simple Kubernetes environm
     ./eksctl-spinup-cluster.sh $clusterName
     ```
 
-    Cluster will take 15-20 minutes to fully deploy.
+    Cluster will take 15-20 minutes to fully deploy. If you see an error message take a look at the CloudFormation templates error, it may be an error relate
 
 1. Run this command to monitor cluster creation status
 
@@ -109,9 +109,8 @@ This repository contains the instructions to deploy a simple Kubernetes environm
 For more info go to:
 
 - [eksctl](https://eksctl.io/)
-- https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.4/
-- [Installing the AWS Load Balancer Controller add-on](https://docs.aws.amazon.com/eks/latest/userguide/aws-load-balancer-controller.html)
 - [Creating an Amazon EKS cluster](https://docs.aws.amazon.com/eks/latest/userguide/create-cluster.html)
+- [Installing the AWS Load Balancer Controller add-on](https://docs.aws.amazon.com/eks/latest/userguide/aws-load-balancer-controller.html)
 - Kubernetes [kubectl Cheat Sheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
 
 Happy building!
