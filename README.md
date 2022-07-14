@@ -71,7 +71,7 @@ This repository contains the instructions to deploy a simple Kubernetes environm
     ./eksctl-spinup-cluster.sh $clusterName
     ```
 
-    Cluster will take 15-20 minutes to fully deploy. If you see an error message take a look at the CloudFormation templates error, it may be an error relate
+    Cluster will take 15-20 minutes to fully deploy. If you see an error message take a look at the CloudFormation template error messages, you may have reached a VPC limit in your region. 
 
 1. Run this command to monitor cluster creation status
 
