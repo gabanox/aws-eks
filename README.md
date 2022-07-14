@@ -62,7 +62,12 @@ This repository contains the instructions to deploy a simple Kubernetes environm
 
     ```sh
     export clusterName=<cluster-name>
-    export AWS_REGION=<my-aws-region>
+    ```
+
+1. Also add as an env cariable the region you are working on.
+
+    ```sh
+    export AWS_REGION=<my-aws-region-code>
     ```
 
 1. Run this command to create a 2 nodes EKS cluster, using `t3.medium` instance type. If you would like to change the cluster configuration you can update `eksctl-spinup-cluster.sh` file.
@@ -72,7 +77,7 @@ This repository contains the instructions to deploy a simple Kubernetes environm
     ./eksctl-spinup-cluster.sh $clusterName $AWS_REGION
     ```
 
-    Cluster will take 15-20 minutes to fully deploy, do not interrupt the script execution. If you see an error message take a look at the CloudFormation template error messages, you may have reached a VPC limit in your region.
+    Cluster will take 15-20 minutes to fully deploy, do not interrupt the script execution. If you see an error message take a look at the CloudFormation template error messages, you may have reached a VPC limit in your region. You could either delete an unused VPC o select a different region for your cluster deployment.
 
 1. Run this command to monitor cluster creation status
 
@@ -107,30 +112,10 @@ This repository contains the instructions to deploy a simple Kubernetes environm
     kubernetes   ClusterIP   10.100.0.1   <none>        443/TCP   16m
     ```
 
-1. (Optiona) If you would like to install the AWS Load Balancer controller, run the below command
-
-    ```sh
-    chmod +x AWSLoadBalancerController.sh
-    ./AWSLoadBalancerController.sh $clusterName $AWS_REGION
-    ```
-
-    The script might take a few minutes to complete.
-
-    The command output should show **AWS Load Balancer controller installed!**
-
-1. To confirm that the AWS Load Balancer Controller pods are in a **Running** state, run the following command:
-
-    ```sh
-    kubectl get pods \
-    -n kube-system \
-    --selector=app.kubernetes.io/name=aws-load-balancer-controller
-    ```
-
 For more info go to:
 
 - [eksctl](https://eksctl.io/)
 - [Creating an Amazon EKS cluster](https://docs.aws.amazon.com/eks/latest/userguide/create-cluster.html)
-- [Installing the AWS Load Balancer Controller add-on](https://docs.aws.amazon.com/eks/latest/userguide/aws-load-balancer-controller.html)
 - Kubernetes [kubectl Cheat Sheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
 
 Happy building!
