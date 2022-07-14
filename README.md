@@ -105,7 +105,7 @@ This repository contains the instructions to deploy a simple Kubernetes environm
     kubectl get svc
     ```
 
-    Similar output:
+    You must see a similar output:
 
     ```
     NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
