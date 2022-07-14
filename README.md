@@ -109,5 +109,8 @@ This repository contains the instructions to deploy a simple Kubernetes environm
     For more info go to: 
     - https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.4/
     - https://docs.aws.amazon.com/eks/latest/userguide/aws-load-balancer-controller.html
+    - [Creating an Amazon EKS cluster](https://docs.aws.amazon.com/eks/latest/userguide/create-cluster.html)
+    - [Create a kubeconfig for Amazon EKS](https://docs.aws.amazon.com/eks/latest/userguide/create-kubeconfig.html)
+    - Kubernetes [kubectl Cheat Sheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
 
 Happy building!
