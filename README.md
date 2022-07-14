@@ -79,7 +79,7 @@ This repository contains the instructions to deploy a simple Kubernetes environm
 
     Cluster will take 15-20 minutes to fully deploy, do not interrupt the script execution. If you see an error message take a look at the CloudFormation template error messages, you may have reached a VPC limit in your region. You could either delete an unused VPC o select a different region for your cluster deployment.
 
-1. Run this command to monitor cluster creation status
+1. Once finished the command execution, run this command to confirm the cluster status
 
     ```sh
     aws eks describe-cluster --name $clusterName --region $AWS_REGION --query 'cluster.status' --output text 
