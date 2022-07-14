@@ -2,6 +2,12 @@
 
 Create an EKS environmet for testing and development
 
+This repository contains the instructions to deploy a simple Kubernetes environment on EKS. The resources that will created are:
+
+- Cloud9 IDE
+- IAM instance profile, IAM role and an IAM policy
+- 2 worker nodes EKS cluster
+
 1. First add as an environment variable the EKS environment name you would like to use (e.g. env1). Replace with your desired EKS environment name.
 
     ```sh
@@ -14,7 +20,7 @@ Create an EKS environmet for testing and development
     aws cloudformation create-stack --stack-name $envName --template-url https://ee-assets-prod-us-east-1.s3.amazonaws.com/modules/b2712516c3c24d58a606eecfb837cb1e/v1/eks-work-env.template --capabilities CAPABILITY_IAM
     ```
 
-1. Wait until deployment has a completed state. Run this command to confirm the deployment status.
+1. Wait until deployment has a `CREATE_COMPLETE` state. Run this command to confirm the deployment status.
 
     ```sh
     aws cloudformation describe-stacks --stack-name $envName  --query 'Stacks[*].StackStatus' --output text
