@@ -49,11 +49,17 @@ Create an EKS environmet for testing and development
     ./cloud9setup.sh
     ```
 
-1. Run this command to create a 2 nodes EKS cluster, using `t3.medium` instance type. If you would like to change the cluster configuration you can update `eksctl-spinup-cluster.sh` file. Replace <cluster-name> with the desired value.
+1. Now you will create your EKS cluster, but first add as an environment variable the EKS cluster name you would like to use (e.g. eks-lab-cluster). Replace <cluster-name> with your desired EKS cluster name.
+
+    ```sh
+    export clusterName=<cluster-name>
+    ```
+
+1. Run this command to create a 2 nodes EKS cluster, using `t3.medium` instance type. If you would like to change the cluster configuration you can update `eksctl-spinup-cluster.sh` file.
 
     ```sh
     chmod +x eksctl-spinup-cluster.sh
-    ./eksctl-spinup-cluster.sh <cluster-name>
+    ./eksctl-spinup-cluster.sh $clusterName
     ```
 
     Cluster will take 15-20 minutes to fully deploy.
@@ -69,8 +75,14 @@ Create an EKS environmet for testing and development
 1. Now you can authenticate
 
     ```sh
-    aws eks update-kubeconfig --region us-west-2 --name <cluster-name>
+    aws eks update-kubeconfig --region us-west-2 --name $clusterName
     ````
+
+1. If you see this error message during your building activities, just re-run the previous command
+
+    ```
+    Unable to connect to the server: getting credentials: decoding stdout: no kind "ExecCredential" is registered for version "client.authentication.k8s.io/v1alpha1" in scheme "pkg/client/auth/exec/exec.go:62"
+    ```
 
 1. Run this command to confirm your **Cloud9** environment can communicate with the EKS cluster
 
@@ -78,5 +90,11 @@ Create an EKS environmet for testing and development
     kubectl get svc
     ```
 
+1. (Optiona) If you would like to install the AWS Load Balancer controller, run the below command
+
+    ```sh
+    chmod +x AWSLoadBalancerController.sh
+    ./AWSLoadBalancerController.sh $clusterName
+    ```
 
 Happy building!
