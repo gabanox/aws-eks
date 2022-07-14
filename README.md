@@ -100,6 +100,13 @@ This repository contains the instructions to deploy a simple Kubernetes environm
     kubectl get svc
     ```
 
+    Similar output:
+
+    ```
+    NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
+    kubernetes   ClusterIP   10.100.0.1   <none>        443/TCP   16m
+    ```
+    
 1. (Optiona) If you would like to install the AWS Load Balancer controller, run the below command
 
     ```sh
