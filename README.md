@@ -53,6 +53,7 @@ This repository contains the instructions to deploy a simple Kubernetes environm
     - helm
 
     ```sh
+    cd eks-work-env/
     chmod +x cloud9setup.sh
     ./cloud9setup.sh
     ```
