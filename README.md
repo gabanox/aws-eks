@@ -34,6 +34,7 @@ This repository contains the instructions to deploy a simple *Kubernetes* enviro
     curl https://raw.githubusercontent.com/gcanales75/eks-work-env/main/setIamPermissions.sh > setIamPermissions.sh
     chmod +x setIamPermissions.sh
     ./setIamPermissions.sh $envName
+    
     ```
 
 1. You must see this string in the stdout: `"State": "associating"`.
