@@ -79,6 +79,7 @@ This repository contains the instructions to deploy a simple *Kubernetes* enviro
     ```sh
     chmod +x eksctl-spinup-cluster.sh
     ./eksctl-spinup-cluster.sh $clusterName $AWS_REGION
+    
     ```
 
     Cluster will take 15-20 minutes to fully deploy, do not interrupt the script execution. If you see an error message take a look at the CloudFormation template error messages, you may have reached a VPC limit in your region. You could either delete an unused VPC o select a different region for your cluster deployment.
