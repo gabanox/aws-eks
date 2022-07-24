@@ -8,6 +8,8 @@ This repository contains the instructions to deploy a simple *Kubernetes* enviro
 - IAM instance profile, IAM role and an IAM policy
 - 2 worker nodes EKS cluster
 
+1. Open a console with **AWS CLI** preinstalled on launch a **CloudShell** console.
+
 1. First add as an environment variable the EKS environment name you would like to use (e.g. env1). Replace with your desired EKS environment name.
 
     ```sh
