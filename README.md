@@ -34,7 +34,7 @@ This repository contains the instructions to deploy a simple *Kubernetes* enviro
     curl https://raw.githubusercontent.com/gcanales75/eks-work-env/main/setIamPermissions.sh > setIamPermissions.sh
     chmod +x setIamPermissions.sh
     ./setIamPermissions.sh $envName
-    
+
     ```
 
 1. You must see this string in the stdout: `"State": "associating"`.
@@ -59,6 +59,7 @@ This repository contains the instructions to deploy a simple *Kubernetes* enviro
     cd eks-work-env/
     chmod +x cloud9setup.sh
     ./cloud9setup.sh
+    
     ```
 
 1. Now you will create your EKS cluster, but first add as an environment variable the EKS cluster name you would like to use (e.g. eks-lab-cluster). Replace <cluster-name> with your desired EKS cluster name.
