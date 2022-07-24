@@ -59,7 +59,7 @@ This repository contains the instructions to deploy a simple *Kubernetes* enviro
     cd eks-work-env/
     chmod +x cloud9setup.sh
     ./cloud9setup.sh
-    
+
     ```
 
 1. Now you will create your EKS cluster, but first add as an environment variable the EKS cluster name you would like to use (e.g. eks-lab-cluster). Replace <cluster-name> with your desired EKS cluster name.
@@ -68,7 +68,7 @@ This repository contains the instructions to deploy a simple *Kubernetes* enviro
     export clusterName=<cluster-name>
     ```
 
-1. Also add as an env cariable the region you are working on.
+1. Also add as an env variable the region you are working on.
 
     ```sh
     export AWS_REGION=<my-aws-region-code>
