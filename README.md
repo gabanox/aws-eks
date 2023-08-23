@@ -19,7 +19,7 @@ This repository contains the instructions to deploy a simple *Kubernetes* enviro
 1. Run this command from a CLI console (e.g. CloudShell) to run a CloudFormation template which will create a **Cloud9** development environment.
 
     ```sh
-    aws cloudformation create-stack --stack-name $envName --template-url https://ee-assets-prod-us-east-1.s3.amazonaws.com/modules/b2712516c3c24d58a606eecfb837cb1e/v1/eks-work-env.template --capabilities CAPABILITY_IAM
+    aws cloudformation create-stack --stack-name $envName --template-url https://ee-assets-prod-us-east-1.s3.amazonaws.com/modules/b2712516c3c24d58a606eecfb837cb1e/v1/eks-work-env.template --capabilities CAPABILITY_NAMED_IAM
     ```
 
 1. Wait until deployment has a `CREATE_COMPLETE` state. Run this command to confirm the deployment status.
